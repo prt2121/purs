@@ -5,7 +5,9 @@ import Prelude
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Console (CONSOLE, print)
 
-import Diag (answer)
+import MyMath (answer, circleArea)
 
 main :: forall e. Eff (console :: CONSOLE | e) Unit
-main = print answer
+main = do
+  print answer
+  print $ circleArea 1.0

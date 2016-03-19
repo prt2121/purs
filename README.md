@@ -1,1 +1,1 @@
-# purs
+purescript playground

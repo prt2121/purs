@@ -11,3 +11,9 @@ node_modules
 .DS_Store
 .cabal-sandbox
 cabal.sandbox.config
+/bower_components/
+/node_modules/
+/.pulp-cache/
+/output/
+/.psci*
+/src/.webpack.js

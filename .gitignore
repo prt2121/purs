@@ -1,0 +1,13 @@
+.psci_modules
+.pulp-cache
+.psci
+bower_components
+built-tests
+coverage
+docs
+dist
+output
+node_modules
+.DS_Store
+.cabal-sandbox
+cabal.sandbox.config

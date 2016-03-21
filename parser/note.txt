@@ -1,0 +1,18 @@
+~/W/p/parser git:master λ →  pulp run                                                                                                                                         ⬆ ◼
+* Building project in/Users/pt2121/Works/purs/parser
+psc: No files found using pattern: src/**/*.js
+* Build successful.
+
+~/W/p/parser git:master λ →  pulp psci                                                                                                                                        ⬆ ◼
+ ____                 ____            _       _
+|  _ \ _   _ _ __ ___/ ___|  ___ _ __(_)_ __ | |_
+| |_) | | | | '__/ _ \___ \ / __| '__| | '_ \| __|
+|  __/| |_| | | |  __/___) | (__| |  | | |_) | |_
+|_|    \__,_|_|  \___|____/ \___|_|  |_| .__/ \__|
+                                       |_|
+
+:? shows help
+> import Parser (parens, parseTest)
+> import Main
+> main
+unit

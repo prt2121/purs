@@ -13,4 +13,4 @@ rectangle = Rectangle (Point { x: 10.0, y: 10.0 }) 10.0 10.0
 picture :: Picture
 picture = [circle, rectangle]
 
-main = log (showBounds (bounds picture))
+main = log "todo" -- (showBounds (bounds picture))

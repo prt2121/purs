@@ -1,32 +1,32 @@
-module Data.Picture where
+module Data.Picture (Point (Point), Shape (..), Picture (..), showBounds, Bounds) where
 
 import Prelude
 
 import Data.Foldable
 
-data Point = Point 
+data Point = Point
   { x :: Number
-  , y :: Number 
+  , y :: Number
   }
 
 showPoint :: Point -> String
-showPoint (Point { x = x, y = y }) = 
+showPoint (Point { x = x, y = y }) =
   "(" ++ show x ++ ", " ++ show y ++ ")"
 
-data Shape 
+data Shape
   = Circle Point Number
   | Rectangle Point Number Number
   | Line Point Point
   | Text Point String
 
 showShape :: Shape -> String
-showShape (Circle c r) = 
+showShape (Circle c r) =
   "Circle [center: " ++ showPoint c ++ ", radius: " ++ show r ++ "]"
-showShape (Rectangle c w h) = 
+showShape (Rectangle c w h) =
   "Rectangle [center: " ++ showPoint c ++ ", width: " ++ show w ++ ", height: " ++ show h ++ "]"
-showShape (Line start end) = 
+showShape (Line start end) =
   "Line [start: " ++ showPoint start ++ ", end: " ++ showPoint end ++ "]"
-showShape (Text loc text) = 
+showShape (Text loc text) =
   "Text [location: " ++ showPoint loc ++ ", text: " ++ show text ++ "]"
 
 type Picture = Array Shape
@@ -38,11 +38,11 @@ data Bounds = Bounds
   { top    :: Number
   , left   :: Number
   , bottom :: Number
-  , right  :: Number 
+  , right  :: Number
   }
 
 showBounds :: Bounds -> String
-showBounds (Bounds b) = 
+showBounds (Bounds b) =
   "Bounds [top: " ++ show b.top ++
   ", left: "      ++ show b.left ++
   ", bottom: "    ++ show b.bottom ++
@@ -112,3 +112,17 @@ bounds = foldl combine emptyBounds
   where
   combine :: Bounds -> Shape -> Bounds
   combine b shape = shapeBounds shape \/ b
+
+instance showPointInstance :: Show Point where
+  show (Point { x = x, y = y }) =
+    "(" ++ show x ++ ", " ++ show y ++ ")"
+
+instance showShapeInstance :: Show Shape where
+  show (Circle c r) =
+    "Circle [center: " ++ show c ++ ", radius: " ++ show r ++ "]"
+  show (Rectangle c w h) =
+    "Rectangle [center: " ++ show c ++ ", width: " ++ show w ++ ", height: " ++ show h ++ "]"
+  show (Line start end) =
+    "Line [start: " ++ show start ++ ", end: " ++ show end ++ "]"
+  show (Text loc text) =
+    "Text [location: " ++ show loc ++ ", text: " ++ show text ++ "]"

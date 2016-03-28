@@ -27,8 +27,9 @@ maybeMul = lift2 (*)
 maybeDiv :: forall a. (ModuloSemiring a) => Maybe a -> Maybe a -> Maybe a
 maybeDiv = lift2 (/)
 
--- forall a f. (Applicativef) => Maybe (f a) -> f (Maybe a)
-
+combineMaybe  :: forall a f. (Applicative f) => Maybe (f a) -> f (Maybe a)
+combineMaybe Nothing = pure Nothing
+combineMaybe (Just f) = pure <$> f
 
 main :: forall e. Eff (console :: CONSOLE | e) Unit
 main = do

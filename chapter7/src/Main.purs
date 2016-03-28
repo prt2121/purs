@@ -6,8 +6,8 @@ import Control.Monad.Eff.Console (CONSOLE, log)
 import Control.Apply
 import Data.Maybe
 
-liftedPlus :: forall a. (Semiring a) => Maybe a -> Maybe a -> Maybe a
-liftedPlus = lift2 (+)
+maybePlus :: forall a. (Semiring a) => Maybe a -> Maybe a -> Maybe a
+maybePlus = lift2 (+)
 
 -- import Control.Apply
 -- import Prelude

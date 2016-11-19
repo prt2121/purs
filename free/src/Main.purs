@@ -11,7 +11,8 @@ data Tree a =
   | Node (Tree a) a (Tree a)
 
 
-instance showTree :: (Show a) => Show (Tree a) where
+-- could blow up
+instance showTree :: (Show a) ⇒ Show (Tree a) where
   show Leaf = ""
   show (Node l v r) = show l <> " " <> show v <> show r
 
@@ -23,7 +24,7 @@ newtype TaggedNode a =
   }
 
 
-instance showTaggedNode :: (Show a) => Show (TaggedNode a) where
+instance showTaggedNode :: (Show a) ⇒ Show (TaggedNode a) where
   show (TaggedNode { n, m }) =
     "(" <> show n <> ", " <> show m <> ")"
 
@@ -35,6 +36,12 @@ testTree =
        (Node (Node Leaf "X" Leaf)
              "N"
              (Node Leaf "Y" Leaf))
+
+
+bigTestTree :: Int → Tree Int
+bigTestTree n = big Leaf n where
+  big t 0 = t
+  big t m = big (Node t m Leaf) (m - 1)
 
 
 tagTree :: ∀ st e t.
@@ -70,5 +77,5 @@ tagTree t =
 main :: forall e. Eff (console :: CONSOLE | e) Unit
 main = do
   log "Tree :"
-  t ← runST (tagTree testTree)
+  t ← runST (tagTree (bigTestTree 1000))
   log $ show t

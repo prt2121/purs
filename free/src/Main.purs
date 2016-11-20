@@ -13,8 +13,11 @@ data Tree a =
 
 -- could blow up
 instance showTree :: (Show a) ⇒ Show (Tree a) where
-  show Leaf = ""
-  show (Node l v r) = show l <> " " <> show v <> show r
+  show t = go t id where
+    go Leaf k = k ""
+    go (Node l v r) k = go l $ \sl →
+                          go r $ \sr →
+                            k (sl <> " " <> show v <> " " <> sr)
 
 
 newtype TaggedNode a =
@@ -77,5 +80,5 @@ tagTree t =
 main :: forall e. Eff (console :: CONSOLE | e) Unit
 main = do
   log "Tree :"
-  t ← runST (tagTree (bigTestTree 1000))
+  t ← runST (tagTree (bigTestTree 10000))
   log $ show t
